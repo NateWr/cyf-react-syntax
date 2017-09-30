@@ -28,7 +28,7 @@ function Button(props) {
 export default Button;
 ```
 
-Some components may be more complex and control other components. Read the following `App` component and try to understand how it works.
+Some components may be more complex and control other components. Read the following `ContactForm` component and try to understand how it works.
 
 ```js
 import React, { Component } from 'react';
@@ -156,9 +156,9 @@ So we say the `<Button>` component has two props: `isDisabled` and `text`. The p
 
 ## What should you know?
 
-1. In the `App` component, is `method` a **property** passed to the `Button` component?
+1. In the `ContactForm` component, is `method` a **property** passed to the `Button` component?
 
-2. What are the names of the **properties** that the `Button` component receives from the `App`?
+2. What are the names of the **properties** that the `Button` component receives from the `ContactForm`?
 
 3. When the HTML is rendered, what will the value of `class` be in the `<button>` element if the `isDisabled` prop is set to false?
 
@@ -269,9 +269,9 @@ In this way, we can convert actions that the user takes in the browser into chan
 
 # JSX and HTML
 
-**JSX** is a special way of writing HTML. React uses this to mix JavaScript (like variables: `let number = 0`) with HTML (like tags: `<p>`).
+**JSX** is a special way of writing HTML. React uses this to mix JavaScript (like expressions: `someComndition ? 'true' : 'false'`) with HTML (like tags: `<p>`).
 
-In a React component, you *write* JSX code in the `render` function:
+In a React component, you *write* JSX code in the `render` function and when you want to write javascript inside your jsx - you wrap it in curly brackets: `{}`.
 
 ```js
 render () {
@@ -281,16 +281,17 @@ render () {
 }
 ```
 
-React takes the **props** from the component and compiles the JSX code into HTML:
+React takes the expressions you put into those curly braces and converts them to pass out what they equal. This means you can call functions inside the curly braces, as well as use ternary expressions and pass function references down. React will convert this code into either a html element if that's what you rendered, or if you rendered a react component it will step inside that react component and go through the jsx that's in **it's** `render` function.
 
 ```
 // props
 let props = {
-	text: 'Submit'
+	text: 'Submit',
+	isDisabled: true
 };
 
 // JSX code:
-<button>{props.text}</button>
+<button disable={isDisabled ? true : false}>{props.text}</button>
 
 // Compiled HTML
 <button>Submit</button>
@@ -310,7 +311,7 @@ class TwoButtons extends Component {
 	render () {
 		return (
 			<button class="btn-default">Submit</button>
-			<Button className="btn-default" text="Submit"/>
+			<MyButton className="btn-default" text="Submit"/>
 		);
 	}
 }
@@ -325,7 +326,7 @@ This will render **two buttons** that are the same. Here is what the HTML looks 
 
 So what's the difference?
 
-In the render function, the first button is created wit just basic HTML code. The second button loads a *new React component* named `Button`.
+In the render function, the first button is created with just basic HTML code. The second button loads a *new React component* named `MyButton`.
 
 Let's break this down.
 
@@ -340,10 +341,8 @@ This is plain HTML code. The HTML **tag** is `button` and it has one **attribute
 Here's the second line:
 
 ```html
-<Button className="btn-default" text="Submit"/>
+<MyButton className="btn-default" text="Submit"/>
 ```
-
-This looks very similar, but it is creating a new React component named `Button`. (Notice the difference between `<button>` and `<Button>`).
 
 This component is passed two **props** named `className` and `text`. These props are written to look like HTML attributes, but they **are not HTML attributes**. Instead, they are converted into **props** and passed to the `Button` component in an object like this:
 
@@ -354,19 +353,19 @@ This component is passed two **props** named `className` and `text`. These props
 }
 ```
 
-The code for the `Button` component will receive the props like this:
+The code for the `MyButton` component will receive the props like this:
 
 ```js
 import React from 'react';
 
-function Button(props) {
+function MyButton(props) {
 	return <button className={props.className}>{props.text}</button>;
 }
 
-export default Button;
+export default MyButton;
 ```
 
-It's important that you can identify the difference between HTML elements with **attributes** and React components with **properties**.
+If you want to know whether or not you're rendering a html element, or another React component - html elements **always** start with a lowercase letter, whereas React components start with a capital. Using **attributes** on a React component is called **properties**.
 
 ## What should you know?
 
