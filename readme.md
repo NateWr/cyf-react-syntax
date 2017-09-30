@@ -1,6 +1,6 @@
 # React Syntax
 
-This document will help you understand the **syntax** and **terminology** of React. It introduces the words you will here describing different parts of the React system.
+This document will help you understand the **syntax** and **terminology** of React. It introduces the words you will hear us use when describing different parts of the React system.
 
 Read the code and the descriptions carefully to make sure you understand. You will need to know the following terms to pass your test next week:
 
@@ -22,7 +22,7 @@ In React, your entire app is broken down into **Components**. Some of these comp
 import React from 'react';
 
 function Button(props) {
-  return <button>{props.text}</button>;
+	return <button>{props.text}</button>;
 }
 
 export default Button;
@@ -87,7 +87,7 @@ A React component always renders and displays HTML code. The `ContactForm` compo
 
 ### What should you know?
 
-1. There are two components in the code above? What are their names?
+1. There are two components in the code above. What are their names?
 
 2. Can you name the "smart" component?
 
@@ -107,7 +107,7 @@ function Button(props) {
 	if (props.isDisabled === true) {
 		className = 'btn-disabled';
 	}
-  return <button className={className} disabled={isDisabled}>{props.text}</button>;
+	return <button className={className} disabled={isDisabled}>{props.text}</button>;
 }
 
 export default Button;
@@ -125,7 +125,7 @@ class ContactForm extends Component {
 
 	render () {
 		return (
-			<form>
+			<form method="POST">
 				<Button isDisabled={true} text="Complete"/>
 			</form>
 		);
@@ -135,9 +135,9 @@ class ContactForm extends Component {
 export default ContactForm;
 ```
 
-When the `<Button>` component is created, we added two **attributes**. The `isDisabled` attribute is set to `true` and the `text` attribbute is set to `Complete`.
+When the `<Button>` component is created, we added two **props**. The `isDisabled` prop is set to `true` and the `text` prop is set to `Complete`.
 
-The `<Button>` component receives these attributes as a `props` object with the following values:
+The `<Button>` component receives these props as an object with the following values:
 
 ```js
 {
@@ -156,13 +156,11 @@ So we say the `<Button>` component has two props: `isDisabled` and `text`. The p
 
 ## What should you know?
 
-1. What are the names of the **attributes** that the `App` component passes to the `Button` component?
+1. In the `App` component, is `method` a **property** passed to the `Button` component?
 
 2. What are the names of the **properties** that the `Button` component receives from the `App`?
 
-3. In the following code from the `App` component, is `text` an **attribute** or a **property**: `<Button isDisabled={true} text="Complete"/>`?
-
-4. When the HTML is rendered, what will the value of `class` be in the `<button>` element if the `isDisabled` prop is set to false?
+3. When the HTML is rendered, what will the value of `class` be in the `<button>` element if the `isDisabled` prop is set to false?
 
 # State
 
@@ -291,6 +289,9 @@ let props = {
 	text: 'Submit'
 };
 
+// JSX code:
+<button>{props.text}</button>
+
 // Compiled HTML
 <button>Submit</button>
 ```
@@ -299,7 +300,7 @@ It's important to understand the difference: JSX is a way of compiling your appl
 
 ## Attributes and Child Components
 
-The terminology of JSX can be confusing, because **attributes** have two purposes. Consider the following component:
+The terminology of JSX can be confusing, because **props** passed to components look just like **attributes** on HTML elements. Consider the following component:
 
 ```js
 import React, { Component } from 'react';
@@ -324,13 +325,17 @@ This will render **two buttons** that are the same. Here is what the HTML looks 
 
 So what's the difference?
 
-In the render function, the first button is created without any child component. It is just basic HTML code. The second button loads a *new React component* named `Button`. Let's break this down. Here's the first line:
+In the render function, the first button is created wit just basic HTML code. The second button loads a *new React component* named `Button`.
+
+Let's break this down.
+
+Here's the first line:
 
 ```html
 <button class="btn-default">Submit</button>
 ```
 
-This is plain HTML code. The **tag** is `button` and it has one **attribute** named `class`.
+This is plain HTML code. The HTML **tag** is `button` and it has one **attribute** named `class`.
 
 Here's the second line:
 
@@ -340,7 +345,7 @@ Here's the second line:
 
 This looks very similar, but it is creating a new React component named `Button`. (Notice the difference between `<button>` and `<Button>`).
 
-This component is passed two **attributes** named `className` and `text`. However, these attributes **are not HTML attributes**. Instead, they are converted into **props** and passed to the `Button` component in an object like this:
+This component is passed two **props** named `className` and `text`. These props are written to look like HTML attributes, but they **are not HTML attributes**. Instead, they are converted into **props** and passed to the `Button` component in an object like this:
 
 ```js
 {
@@ -355,13 +360,13 @@ The code for the `Button` component will receive the props like this:
 import React from 'react';
 
 function Button(props) {
-  return <button className={props.className}>{props.text}</button>;
+	return <button className={props.className}>{props.text}</button>;
 }
 
 export default Button;
 ```
 
-It's important that you can identify the difference between HTML elements and React components.
+It's important that you can identify the difference between HTML elements with **attributes** and React components with **properties**.
 
 ## What should you know?
 
@@ -369,7 +374,7 @@ It's important that you can identify the difference between HTML elements and Re
 
 2. Do you write JSX or HTML in React components?
 
-3. In the following code, what are the attributes that will be passed as props to a child component?
+3. In the following code, which pieces of data are **attributes** and which are **props** that will be passed to a child component?
 
 ```js
 render () {
@@ -383,7 +388,7 @@ render () {
 
 # Conclusion
 
-The answers to all the questions can be found in the examples and descriptiosns above. If you're not able to answer any of the questions, read the section again. Search on Google if you are confused about anything.
+The answers to all the questions can be found in the examples and descriptions above. If you're not able to answer any of the questions, read the section again. Search on Google if you are confused about anything.
 
 For the test next week you should be able to read the following code and identify the following elements:
 
@@ -455,7 +460,7 @@ function User(props) {
 	if (props.isDisabled === true) {
 		className = 'btn-disabled';
 	}
-  return (
+	return (
 		<div>
 			<img src={props.userImage}/>
 			{props.userName}
