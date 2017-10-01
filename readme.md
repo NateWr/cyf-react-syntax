@@ -78,7 +78,7 @@ In the example above, `Button` is a dumb component because it is not responsible
 
 A React component always renders and displays HTML code. The `ContactForm` component above will render the following HTML:
 
-```html
+```HTML
 <form>
 	<input type="text" name="fullName" value="" />
 	<button>Submit</button>
@@ -148,7 +148,7 @@ The `<Button>` component receives these props as an object with the following va
 
 So we say the `<Button>` component has two props: `isDisabled` and `text`. The props with the values above will render the following HTML:
 
-```html
+```HTML
 <form>
 	<button class="btn-disabled" disabled="disabled">Complete</button>
 </form>
@@ -223,7 +223,7 @@ Let's assume the value of our **state** is the following:
 
 The component above will render the following HTML:
 
-```html
+```HTML
 <form>
 	<input type="text" name="fullName" value="Nate Wright"/>
 	<input type="email" name="emailAddress" value="nate@example.org"/>
@@ -269,9 +269,9 @@ In this way, we can convert actions that the user takes in the browser into chan
 
 # JSX and HTML
 
-**JSX** is a special way of writing HTML. React uses this to mix JavaScript (like expressions: `someComndition ? 'true' : 'false'`) with HTML (like tags: `<p>`).
+**JSX** is a special way of writing HTML. React uses this to mix JavaScript (like expressions: `someCondition ? 'true' : 'false'`) with HTML (like tags: `<p>`).
 
-In a React component, you *write* JSX code in the `render` function and when you want to write javascript inside your jsx - you wrap it in curly brackets: `{}`.
+In a React component, you *write* JSX code in the `render` function. When you want to write JavaScript inside your JSX, you wrap it in curly brackets: `{}`.
 
 ```js
 render () {
@@ -281,20 +281,24 @@ render () {
 }
 ```
 
-React takes the expressions you put into those curly braces and converts them to pass out what they equal. This means you can call functions inside the curly braces, as well as use ternary expressions and pass function references down. React will convert this code into either a html element if that's what you rendered, or if you rendered a react component it will step inside that react component and go through the jsx that's in **it's** `render` function.
+React takes the JavaScript expressions you put into those curly braces (`{` and `}`) and returns what they equal. If you have a variable, `let number = 5`, and you use `{number}` in your JSX code, it will replace `{number}` with `5`.
+
+In additional variables, you can do other things inside the curly braces.  You can call functions (`{this.buildGame()}`), use ternary expressions (`isSelected ? 'true' : 'false'`) and more.
+
+React will convert the JSX code into HTML elements. If you create a new React component, it will convert that component's JSX code into HTML elements and print that.
 
 ```
 // props
 let props = {
 	text: 'Submit',
-	isDisabled: true
+	id: 'submit-button'
 };
 
 // JSX code:
-<button disable={isDisabled ? true : false}>{props.text}</button>
+<button id={props.id.length ? props.id : ''}>{props.text}</button>
 
 // Compiled HTML
-<button>Submit</button>
+<button id="submit-button">Submit</button>
 ```
 
 It's important to understand the difference: JSX is a way of compiling your application data (**state** and **props**) into HTML code, which the browser understands. When **state** changes, React will render the HTML code again.
@@ -319,7 +323,7 @@ class TwoButtons extends Component {
 
 This will render **two buttons** that are the same. Here is what the HTML looks like after it has been compiled:
 
-```html
+```HTML
 <button class="btn-default">Submit</button>
 <button class="btn-default">Submit</button>
 ```
@@ -332,7 +336,7 @@ Let's break this down.
 
 Here's the first line:
 
-```html
+```HTML
 <button class="btn-default">Submit</button>
 ```
 
@@ -340,11 +344,11 @@ This is plain HTML code. The HTML **tag** is `button` and it has one **attribute
 
 Here's the second line:
 
-```html
+```HTML
 <MyButton className="btn-default" text="Submit"/>
 ```
 
-This component is passed two **props** named `className` and `text`. These props are written to look like HTML attributes, but they **are not HTML attributes**. Instead, they are converted into **props** and passed to the `Button` component in an object like this:
+This component is passed two **props** named `className` and `text`. These props are written to look like HTML attributes, but they **are not HTML attributes**. Instead, they are converted into **props** and passed to the `MyButton` component in an object like this:
 
 ```js
 {
@@ -365,7 +369,7 @@ function MyButton(props) {
 export default MyButton;
 ```
 
-If you want to know whether or not you're rendering a html element, or another React component - html elements **always** start with a lowercase letter, whereas React components start with a capital. Using **attributes** on a React component is called **properties**.
+How can yout ell if you're rendering a HTML element or another React component? HTML elements **always** start with a lowercase letter (`<button>`), whereas React components start with a capital (`MyButton`). When we write **attributes** on a React component (`<MyButton text="Submit"/>`), we call them **properties**.
 
 ## What should you know?
 
@@ -373,7 +377,7 @@ If you want to know whether or not you're rendering a html element, or another R
 
 2. Do you write JSX or HTML in React components?
 
-3. In the following code, which pieces of data are **attributes** and which are **props** that will be passed to a child component?
+3. In the following code, which pieces of data are HTML **attributes** and which are **props** that will be passed to a child component?
 
 ```js
 render () {
@@ -387,7 +391,7 @@ render () {
 
 # Conclusion
 
-The answers to all the questions can be found in the examples and descriptions above. If you're not able to answer any of the questions, read the section again. Search on Google if you are confused about anything.
+The answers to all the questions can be found in the examples and descriptions above. If you're not able to answer any of the questions, read the section again carefully. Pay special attention to terms highlighted in **bold**. Search on Google if you are confused about anything.
 
 For the test next week you should be able to read the following code and identify the following elements:
 
