@@ -39,13 +39,13 @@ class ContactForm extends Component {
 	constructor() {
 		super();
 		this.state = {
-			fullName: '',
+			fullName: ''
 		};
 	};
 
 	changeFullName = (event) => {
 		this.setState({
-			fullName: event.target.value;
+			fullName: event.target.value
 		});
 	};
 
@@ -53,7 +53,7 @@ class ContactForm extends Component {
 		return (
 			<form>
 				<input type="text" name="fullName" value={this.state.fullName} onChange={this.changeFullName}/>
-				<Button text="Submit">
+				<Button text="Submit"/>
 			</form>
 		);
 	}
@@ -87,7 +87,7 @@ A React component always renders and displays HTML code. The `ContactForm` compo
 
 ### What should you know?
 
-1. There are two components in the code above. What are their names?
+1. In the Components section above, we've written code for two components. Can you name the two components discussed?
 
 2. Can you name the "smart" component?
 
@@ -102,7 +102,7 @@ When a component receives data from its parent, we call that data **props**, whi
 ```js
 import React from 'react';
 
-function Button(props) {
+function MyButton(props) {
 	let className = 'btn-default';
 	if (props.isDisabled === true) {
 		className = 'btn-disabled';
@@ -110,23 +110,23 @@ function Button(props) {
 	return <button className={className} disabled={isDisabled}>{props.text}</button>;
 }
 
-export default Button;
+export default MyButton;
 ```
 
-The `Button` component receives `isDisabled` and `text` properties. These are passed to the button as `props`, and then used to render the HTML output.
+The `MyButton` component receives `isDisabled` and `text` props. These are passed to the button as `props`, and then used to render the HTML output.
 
-But where do the `props` come from? They come from a *parent component*. Can you identify the values of the `props` being passed to the `Button` component in the parent component below?
+But where do the `props` come from? They come from a *parent component*. Can you identify the values of the `props` being passed to the `MyButton` component in the parent component below?
 
 ```js
 import React, { Component } from 'react';
-import Button from './Button.js';
+import MyButton from './MyButton.js';
 
 class ContactForm extends Component {
 
 	render () {
 		return (
 			<form method="POST">
-				<Button isDisabled={true} text="Complete"/>
+				<MyButton isDisabled={true} text="Complete"/>
 			</form>
 		);
 	}
@@ -135,9 +135,9 @@ class ContactForm extends Component {
 export default ContactForm;
 ```
 
-When the `<Button>` component is created, we added two **props**. The `isDisabled` prop is set to `true` and the `text` prop is set to `Complete`.
+When the `<MyButton>` component is created, we added two **props**. The `isDisabled` prop is set to `true` and the `text` prop is set to `Complete`.
 
-The `<Button>` component receives these props as an object with the following values:
+The `<MyButton>` component receives these props as an object with the following values:
 
 ```js
 {
@@ -146,7 +146,7 @@ The `<Button>` component receives these props as an object with the following va
 }
 ```
 
-So we say the `<Button>` component has two props: `isDisabled` and `text`. The props with the values above will render the following HTML:
+So we say the `<MyButton>` component has two props: `isDisabled` and `text`. The props with the values above will render the following HTML:
 
 ```HTML
 <form>
@@ -156,9 +156,9 @@ So we say the `<Button>` component has two props: `isDisabled` and `text`. The p
 
 ## What should you know?
 
-1. In the `ContactForm` component, is `method` a **property** passed to the `Button` component?
+1. In the `ContactForm` component, is `method` a **property** passed to the `MyButton` component?
 
-2. What are the names of the **properties** that the `Button` component receives from the `ContactForm`?
+2. What are the names of the **props** that the `MyButton` component receives from the `ContactForm`?
 
 3. When the HTML is rendered, what will the value of `class` be in the `<button>` element if the `isDisabled` prop is set to false?
 
@@ -184,13 +184,13 @@ class ContactForm extends Component {
 
 	changeFullName = (event) => {
 		this.setState({
-			fullName: event.target.value;
+			fullName: event.target.value
 		});
 	};
 
 	changeEmailAddress = (event) => {
 		this.setState({
-			emailAddress: event.target.value;
+			emailAddress: event.target.value
 		});
 	};
 
@@ -250,7 +250,7 @@ onChange={this.changeFullName}
 ```
 changeFullName = (event) => {
 	this.setState({
-		fullName: event.target.value;
+		fullName: event.target.value
 	});
 };
 ```
@@ -276,7 +276,7 @@ In a React component, you *write* JSX code in the `render` function. When you wa
 ```js
 render () {
 	return (
-		<button>{props.text}</button>
+		<button>{this.props.text}</button>
 	);
 }
 ```
@@ -295,13 +295,13 @@ let props = {
 };
 
 // JSX code:
-<button id={props.id.length ? props.id : ''}>{props.text}</button>
+<button id={props.id.length ? props.id : ''}>{this.props.text}</button>
 
 // Compiled HTML
 <button id="submit-button">Submit</button>
 ```
 
-It's important to understand the difference: JSX is a way of compiling your application data (**state** and **props**) into HTML code, which the browser understands. When **state** changes, React will render the HTML code again.
+It's important to understand the difference: JSX is a way of converting your application data (**state** and **props**) into HTML code, which the browser understands. When **state** changes, React will render the HTML code again.
 
 ## Attributes and Child Components
 
@@ -321,7 +321,7 @@ class TwoButtons extends Component {
 }
 ```
 
-This will render **two buttons** that are the same. Here is what the HTML looks like after it has been compiled:
+This will render **two buttons** that are the same. Here is what the HTML looks like after it has been converted:
 
 ```HTML
 <button class="btn-default">Submit</button>
@@ -369,7 +369,7 @@ function MyButton(props) {
 export default MyButton;
 ```
 
-How can yout ell if you're rendering a HTML element or another React component? HTML elements **always** start with a lowercase letter (`<button>`), whereas React components start with a capital (`MyButton`). When we write **attributes** on a React component (`<MyButton text="Submit"/>`), we call them **properties**.
+How can yout ell if you're rendering a HTML element or another React component? HTML elements **always** start with a lowercase letter (`<button>`), whereas React components start with a capital (`MyButton`). When we write **attributes** on a React component (`<MyButton text="Submit"/>`), we call them **props**.
 
 ## What should you know?
 
@@ -435,7 +435,7 @@ class UserList extends Component {
 			userImage: '/user/image.jpg',
 		});
 		this.setState({
-			users: newUsers,
+			users: newUsers
 		});
 	};
 
