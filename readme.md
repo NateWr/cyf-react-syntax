@@ -297,7 +297,7 @@ let props = {
 // JSX code:
 <button id={props.id.length ? props.id : ''}>{this.props.text}</button>
 
-// Compiled HTML
+// Converted to HTML
 <button id="submit-button">Submit</button>
 ```
 
@@ -369,7 +369,7 @@ function MyButton(props) {
 export default MyButton;
 ```
 
-How can yout ell if you're rendering a HTML element or another React component? HTML elements **always** start with a lowercase letter (`<button>`), whereas React components start with a capital (`MyButton`). When we write **attributes** on a React component (`<MyButton text="Submit"/>`), we call them **props**.
+How can you tell if you're rendering a HTML element or another React component? HTML elements **always** start with a lowercase letter (`<button>`), whereas React components start with a capital (`MyButton`). When we write **attributes** on a React component (`<MyButton text="Submit"/>`), we call them **props**.
 
 ## What should you know?
 
