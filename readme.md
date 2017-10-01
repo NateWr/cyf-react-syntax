@@ -283,7 +283,7 @@ render () {
 
 React takes the JavaScript expressions you put into those curly braces (`{` and `}`) and returns what they equal. If you have a variable, `let number = 5`, and you use `{number}` in your JSX code, it will replace `{number}` with `5`.
 
-In additional variables, you can do other things inside the curly braces.  You can call functions (`{this.buildGame()}`), use ternary expressions (`isSelected ? 'true' : 'false'`) and more.
+In addition to variables, you can use other JavaScript inside the curly braces.  You can call functions (`{this.buildGame()}`), use ternary expressions (`isSelected ? 'true' : 'false'`) and more.
 
 React will convert the JSX code into HTML elements. If you create a new React component, it will convert that component's JSX code into HTML elements and print that.
 
